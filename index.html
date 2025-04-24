@@ -1,13 +1,231 @@
+<!-- index.html -->
 <!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>p5.js example</title>
-    <style> body {padding: 0; margin: 0;} </style>
-    <script src="p5.min.js"></script>
-    <script src="sketch.js"></script>
-  </head>
-  <body>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Algorithm Visualization</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Understanding and Visualizing Binary Search</h1>
+    <center><h3>By Sprihaa Singh, ss6679</h3></center>
+
+    <!-- Introduction -->
+    <section id="introduction">
+      <div class="narrative">
+        <h2>Why Search?</h2>
+        <p>Searching is central to human nature. Whether it's locating a favorite book in a crowded library, pinpointing a friend's name on an extensive contact list, or finding the right spice in a cluttered kitchen cabinet, we engage daily in tasks that rely fundamentally on our ability to efficiently locate things. This basic human impulse is mirrored by computational search strategies—algorithms that computers utilize to swiftly sift through vast amounts of data. Understanding these algorithms offers a fascinating glimpse into both human cognition and computational efficiency.</p>
+      </div>
+    </section>
+
+    <!-- Linear Search -->
+    <section id="linear-search">
+      <div class="narrative">
+        <h2>Linear Search: The Straightforward Approach</h2>
+        <p>Imagine a long hallway lined with identical numbered doors in ascending order, behind one of which lies the object you're looking for. Linear search is equivalent to opening each door sequentially, starting from one end, checking meticulously behind every single door until the target is found or all possibilities are exhausted. Visually, this would look like stepping methodically along a straight path, systematically inspecting each point—effective in simplicity, yet clearly tedious and increasingly inefficient as the hallway lengthens.</p>
+      </div>
+      <p class="target-info">Click 'Start' to step through an example of linear search on a small list. </p>
+      <p class="target-info">The colored card on the left is the target we are searching for. The letters on the doors represent what is behind them, while the numbers underneath represent the "index number" of the door-- think of it as a unique room number.</p>
+      <div class="controls">
+        <button>Start Linear Search</button>
+        <button class="arrow-button">←</button>
+        <button class="arrow-button">→</button>
+      </div>
+      <svg></svg>
+    </section>
+
+    <!-- Jump Search -->
+    <section id="jump-search">
+      <div class="narrative">
+        <h2>Jump Search: Skipping Ahead</h2>
+        <p>Jump search improves upon linear search by dividing the searching process into two distinct phases: the jump phase and the linear phase. Imagine the same hallway of doors, but now, instead of checking each door one by one, you leap forward at regular intervals—perhaps every fourth or fifth door—quickly skipping through large portions of the hallway. This jumping allows you to quickly narrow down the general area where your target might be located. The size of each jump isn't random; mathematically, it's typically the square root of the total number of doors (or items), balancing the search's complexity by optimizing both phases equally. However, once you realize you've jumped past the target, you enter the linear phase: you slow down, carefully backtracking door by door through the smaller section you've pinpointed, ensuring you don't miss your goal. This dual-phase approach balances speed with accuracy, offering a significant efficiency advantage over linear search.</p>
+      </div>
+      <p class="target-info">Click 'Start' to step through an example of jump search on a small list.</p>
+      <div class="controls">
+        <button>Start Jump Search</button>
+        <button class="arrow-button">←</button>
+        <button class="arrow-button">→</button>
+      </div>
+      <svg></svg>
+    </section>
+
+    <!-- Binary Search -->
+    <section id="binary-search">
+      <div class="narrative">
+        <h2>Binary Search: Divide and Conquer</h2>
+        <p>Imagine again our long hallway filled with ordered, numbered doors. Instead of methodically opening doors one-by-one or jumping through at intervals, binary search lets you start right in the middle. You check this midpoint door and quickly determine whether the item you're seeking lies to the left or to the right. Immediately, you've eliminated half of your options. You move to the midpoint of the remaining half, repeating this intuitive process. Each step swiftly cuts your search area in half, dramatically narrowing down the possibilities. The power of binary search lies precisely here—in systematically and efficiently slicing through large amounts of data with remarkable speed, making it particularly valuable when you're faced with an extensive, sorted dataset.</p>
+      </div>
+      <p class="target-info">Click 'Start' to step through an example of binary search on a small list.</p>
+      <div class="controls">
+        <button>Start Binary Search</button>
+        <button class="arrow-button">←</button>
+        <button class="arrow-button">→</button>
+      </div>
+      <svg></svg>
+    </section>
+
+    <!-- Custom Binary Search -->
+    <section id="custom-binary-search">
+      <div class="narrative">
+        <h2>Try Binary Search Yourself</h2>
+        <p>Want to see Binary Search in action with your own list? Enter a sorted list of numbers and a target value below. The visualization will show how Binary Search processes your input, step by step, just like the standard Binary Search above. This interactive section lets you experiment and see how the algorithm behaves with different lists and targets.</p>
+      </div>
+      <p class="target-info">The pink card on the left is the target we are searching for.</p>
+      <div class="controls">
+        <label for="custom-list">Enter sorted numbers (e.g., 1,3,5,7,9):</label>
+        <input type="text" id="custom-list" placeholder="1,3,5,7,9">
+        <label for="custom-target">Enter target number:</label>
+        <input type="text" id="custom-target" placeholder="5">
+        <button>Start Custom Binary Search</button>
+        <button class="arrow-button">←</button>
+        <button class="arrow-button">→</button>
+      </div>
+      <p id="custom-error" class="error"></p>
+      <svg></svg>
+    </section>
+
+    <!-- Performance Comparison -->
+    <section id="performance-comparison">
+      <div class="narrative">
+        <h2>Comparing Performance: Which Algorithm Wins?</h2>
+        <p>When visually comparing these three methods side-by-side, the differences in efficiency become strikingly evident. Linear search moves steadily but slowly, jump search accelerates considerably with periodic hops, yet binary search radically outpaces both with its exponential narrowing. The following visuals underscore binary search’s unparalleled speed, especially when dealing with significantly large datasets.The bar chart below compares their performance by showing how many steps each algorithm takes to find a target in lists of different sizes. Linear Search grows linearly with list size, Jump Search improves by jumping ahead, and Binary Search shines with its logarithmic growth, needing far fewer steps. Step through the visualization to see how the algorithms compare as the list size increases.</p>
+      </div>
+      <div class="controls">
+        <button class="arrow-button">←</button>
+        <button class="arrow-button">→</button>
+      </div>
+      <svg></svg>
+    </section>
+
+    <!-- Tree Representation -->
+    <section id="tree-representation">
+      <div class="narrative">
+        <h2>Binary Search as a Tree</h2>
+        <p>Imagine stepping away from the hallway and entering a garden with branching paths. At each intersection, you encounter a choice, splitting into two smaller paths, each leading you closer to your goal. Binary search can be visualized similarly, as a branching tree structure. Every intersection (node) represents the midpoint check, sending you down either the left or right branch—smaller subsections of the original data. Mathematically, the tree is built by repeatedly selecting the midpoint of a dataset: values less than this midpoint branch off to form the left subtree, while values greater branch into the right subtree. This iterative partitioning clearly defines each node's path, neatly structuring the dataset into progressively smaller segments. This visual and mathematical approach naturally illustrates how binary search efficiently navigates through decisions, intuitively revealing the algorithm's underlying logic.</p>
+      </div>
+      <div class="controls">
+        <button>Start Tree Visualization</button>
+        <button class="arrow-button">←</button>
+        <button class="arrow-button">→</button>
+      </div>
+      <svg></svg>
+    </section>
+    
+    <!-- Custom Binary Search Tree Visualization -->
+    <section id="custom-tree-visualization">
+      <div class="narrative">
+        <h2>Create Your Own Binary Search Tree</h2>
+        <p>Want to see how a Binary Search Tree is constructed and searched with your own list? Enter a sorted list of numbers and a target value below. The visualization will build a balanced binary search tree from your list and show how the search algorithm traverses the tree to find your target. This interactive section helps you understand the relationship between sorted arrays and binary search trees.</p>
+      </div>
+      <div class="controls">
+        <label for="custom-tree-list">Enter sorted numbers (e.g., 1,3,5,7,9,11,13):</label>
+        <input type="text" id="custom-tree-list" placeholder="1,3,5,7,9,11,13">
+        <label for="custom-tree-target">Enter target number:</label>
+        <input type="text" id="custom-tree-target" placeholder="7">
+        <button onclick="startCustomTreeVisualization(); console.log('Start button clicked inline');">Start Custom Tree Visualization</button>
+        <button class="arrow-button" onclick="stepCustomTreeBackward(); console.log('Back button clicked inline');">←</button>
+        <button class="arrow-button" onclick="stepCustomTreeForward(); console.log('Forward button clicked inline');">→</button>
+      </div>
+      <p id="custom-tree-error" class="error"></p>
+      <svg></svg>
+    </section>
+
+    <!-- Pseudocode Explanation -->
+    <section id="pseudocode-explanation">
+      <div class="narrative">
+        <h2>Understanding Binary Search Through Pseudocode</h2>
+        <p>Picture yourself navigating our branching garden paths again, equipped now with clear instructions. At each step, you keep track of the start and end points of your search. You choose the midpoint path, checking to see if it matches your target. If not, you adjust your focus to either the left or right section based on your comparison, continually narrowing your search. This step-by-step approach is exactly what the binary search pseudocode outlines: setting boundaries, calculating the midpoint, comparing, and adjusting your search range methodically. 
+          <br><br>Pseudocode is a simplified way to describe an algorithm without worrying about specific programming language syntax. Below is the pseudocode for Binary Search, which captures its core logic: start with the entire list, find the middle element, compare it with the target, and repeat on the appropriate half until the target is found or the search space is empty. The explanation that follows breaks down each step to show how the algorithm works in practice.</p>
+        <div class="pseudocode">
+          <pre>
+function BinarySearch(array, target):
+    left = 0
+    right = array.length - 1
+    while left <= right:
+        mid = floor((left + right) / 2)
+        if array[mid] == target:
+            return mid
+        else if array[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1 // Target not found
+          </pre>
+        </div>
+        <ul>
+          <li>Initialize: Set <code>left</code> to the start (0) and <code>right</code> to the end of the list (length - 1).</li>
+          <li>Loop: Continue while <code>left</code> is less than or equal to <code>right</code>, meaning there’s still a search space.</li>
+          <li>Calculate Mid: Find the middle index using <code>floor((left + right) / 2)</code> to split the search space.</li>
+          <li>Compare: If the middle element equals the target, return its index (found!).</li>
+          <li>Adjust Search Space: If the middle element is less than the target, search the right half by setting <code>left = mid + 1</code>. If greater, search the left half by setting <code>right = mid - 1</code>.</li>
+          <li>Not Found: If the loop ends (<code>left > right</code>), return -1 to indicate the target isn’t in the list.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Caveats and Conclusion -->
+    <section id="caveats-conclusion">
+      <div class="narrative">
+        <h2>Final Thoughts</h2>
+        <p>As you navigate the pathways of different search algorithms, understanding their strengths, limitations, and ideal contexts becomes essential. Binary search is particularly powerful but demands that your paths—your data—be neatly ordered. Venturing into unsorted territory disrupts its precise and systematic approach. There are some cases where the resources required to sort the data outweigh the efficiency of binary search, making it better to linearly search the unordered data instead. Additionally, subtle miscalculations such as inaccurately identifying the midpoint or incorrectly managing search boundaries can easily derail your search, resulting in confusion or failure. Further complexity arises when there are duplicate values; binary search might find an occurrence quickly but can cause confusion when determining the exact index of said duplicate value, instead reporting that of a different data point with the same value. Avoiding these mistakes requires careful attention to detail.</p>
+        <p>Ultimately, choosing the right search algorithm hinges upon the nature of your data and your specific needs. Linear search is straightforward and reliable, suitable for smaller or unsorted datasets, while jump search strikes a balance between simplicity and speed for moderately sized, sorted lists. Binary search emerges as the optimal solution for large, sorted collections where rapid access is crucial. By thoroughly grasping these algorithms through interactive exploration, you can confidently select and apply the most effective strategy, enhancing both your understanding and practical skills in algorithmic thinking.
+
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Direct handler for custom tree visualization
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Adding direct handlers for custom tree visualization');
+      
+      // Start button
+      const customTreeButton = document.querySelector('#custom-tree-visualization .controls button:not(.arrow-button)');
+      if (customTreeButton) {
+        customTreeButton.onclick = function() {
+          console.log('Custom tree button clicked directly');
+          if (typeof startCustomTreeVisualization === 'function') {
+            startCustomTreeVisualization();
+          } else {
+            console.error('startCustomTreeVisualization function not found');
+          }
+        };
+      } else {
+        console.error('Custom tree button not found');
+      }
+      
+      // Previous button
+      const prevButton = document.querySelector('#custom-tree-visualization .controls .arrow-button:nth-of-type(1)');
+      if (prevButton) {
+        prevButton.onclick = function() {
+          console.log('Custom tree previous button clicked');
+          if (typeof stepCustomTreeBackward === 'function') {
+            stepCustomTreeBackward();
+          } else {
+            console.error('stepCustomTreeBackward function not found');
+          }
+        };
+      }
+      
+      // Next button
+      const nextButton = document.querySelector('#custom-tree-visualization .controls .arrow-button:nth-of-type(2)');
+      if (nextButton) {
+        nextButton.onclick = function() {
+          console.log('Custom tree next button clicked');
+          if (typeof stepCustomTreeForward === 'function') {
+            stepCustomTreeForward();
+          } else {
+            console.error('stepCustomTreeForward function not found');
+          }
+        };
+      }
+    });
+  </script>
+</body>
 </html>

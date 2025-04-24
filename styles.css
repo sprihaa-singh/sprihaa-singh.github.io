@@ -1,0 +1,347 @@
+/* Cohesive indigo-based color palette */
+:root {
+    --primary: #6173dc; /* Soft indigo for buttons, bars, highlights */
+    --accent: #8e9bdd; /* Lighter indigo for hover, secondary elements */
+    --background: #F5F7FA; /* Light gray-blue for page background */
+    --text: #2D3748; /* Dark gray for text */
+    --card-bg: #FFFFFF; /* White for cards and SVGs */
+    --neutral: #E2E8F0; /* Light gray for ruled-out, backgrounds */
+    --shadow: rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Global styles */
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    margin: 0;
+    background-color: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+  h3 {
+    color: var(--accent);
+  }
+  
+  section {
+    margin: 3rem 0;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--shadow);
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--shadow);
+  }
+  
+  .narrative {
+    text-align: left;
+    margin-bottom: 1.5rem;
+  }
+  
+  .narrative p {
+    font-size: 1.1rem;
+    margin: 0.75rem 0;
+  }
+  
+  .narrative ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+  
+  .narrative li {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .pseudocode {
+    background: var(--neutral);
+    padding: 1.5rem;
+    border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    white-space: pre-wrap;
+    margin: 1.5rem 0;
+  }
+  
+  .target-info {
+    font-size: 1rem;
+    font-style: italic;
+    color: #666;
+    margin: 1rem 0;
+    text-align: left;
+  }
+  
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  
+  button:hover:not(:disabled) {
+    background: var(--accent);
+    transform: scale(1.05);
+  }
+  
+  button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .arrow-button {
+    background: var(--primary);
+  }
+  
+  .arrow-button:hover:not(:disabled) {
+    background: var(--accent);
+  }
+  
+  input {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 0 0.5rem;
+    max-width: 200px;
+  }
+  
+  label {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    font-weight: 500;
+  }
+  
+  .error {
+    color: #D32F2F;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  
+  svg {
+    border-radius: 8px;
+    background: var(--card-bg);
+    box-shadow: 0 2px 8px var(--shadow);
+    margin: 0 auto;
+    display: block;
+  }
+  
+  /* SVG-specific styles */
+  .target-card {
+    fill: #e8eaf6; /* Light indigo */
+    stroke: #3f51b5; /* Indigo */
+    stroke-width: 2;
+    rx: 5;
+    ry: 5;
+  }
+  
+  .ruled-out {
+    fill: #f5f5f5; /* Light grey */
+    stroke: #bdbdbd; /* Grey */
+    stroke-width: 1.5;
+    rx: 5;
+    ry: 5;
+  }
+  
+  .unflipped {
+    fill: #ffffff; /* White */
+    stroke: #2196F3; /* Blue */
+    stroke-width: 1.5;
+    rx: 5;
+    ry: 5;
+  }
+  
+  .left-outline {
+    stroke: #2196F3; /* Blue */
+    stroke-width: 2.5;
+    rx: 5;
+    ry: 5;
+  }
+  
+  .right-outline {
+    stroke: #F44336; /* Red */
+    stroke-width: 2.5;
+    rx: 5;
+    ry: 5;
+  }
+  
+  .mid-outline {
+    stroke: #3f51b5; /* Indigo */
+    stroke-width: 2.5;
+    rx: 5;
+    ry: 5;
+  }
+  
+  .comparison-arrow {
+    stroke: #3f51b5; /* Indigo */
+    stroke-width: 2;
+    marker-end: url(#arrowhead);
+  }
+  
+  .comparison-background {
+    fill: #e8eaf6; /* Light indigo */
+    stroke: #3f51b5; /* Indigo */
+    stroke-width: 1.5;
+    rx: 15;
+    ry: 15;
+  }
+  
+  .percentage-background {
+    fill: var(--neutral);
+  }
+  
+  .percentage-bar {
+    fill: var(--primary);
+  }
+  
+  .comparison-counter {
+    font-size: 16px;
+    fill: var(--text);
+  }
+  
+  .bar-linear, .bar-linear-static {
+    fill: var(--primary); /* Soft indigo for linear search */
+  }
+  
+  .bar-jump, .bar-jump-static {
+    fill: var(--accent); /* Lighter indigo for jump search */
+  }
+  
+  .bar-binary, .bar-binary-static {
+    fill: #4C566A; /* Darker gray for binary search */
+  }
+  
+  .legend rect {
+    stroke: var(--text);
+    stroke-width: 1;
+  }
+  
+  .legend text {
+    font-size: 14px;
+    fill: var(--text);
+  }
+  
+  .array-element {
+    fill: var(--card-bg);
+    stroke: var(--text);
+    stroke-width: 2;
+  }
+  
+  .tree-node {
+    fill: var(--card-bg);
+    stroke: var(--text);
+    stroke-width: 2;
+    filter: url(#node-shadow); /* Add shadow for depth */
+  }
+  
+  .tree-highlight {
+    fill: var(--accent);
+    stroke: var(--primary);
+    stroke-width: 2;
+  }
+  
+  .tree-link {
+    fill: none;
+    stroke: var(--text);
+    stroke-width: 3;
+  }
+  
+  .explanation-text {
+    font-size: 14px;
+    fill: var(--text);
+  }
+  
+  .mid-formula {
+    font-size: 14px;
+    fill: var(--text);
+  }
+  
+  /* SVG filter for node shadow */
+  svg defs {
+    pointer-events: none;
+  }
+  
+  #node-shadow {
+    pointer-events: none;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 2rem 0;
+    color: #666;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--neutral);
+    margin-top: 3rem;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .container {
+      padding: 1rem;
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+    }
+  
+    section {
+      padding: 1.5rem;
+    }
+  
+    .controls {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    input {
+      max-width: 100%;
+      margin: 0.5rem 0;
+    }
+  
+    svg {
+      width: 100% !important;
+      height: auto;
+    }
+
+  }
